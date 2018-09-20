@@ -1,0 +1,24 @@
+version: '2.2'
+services:
+  # MariaDB container instance
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    
+    volumes:
+      - ./databases:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_PORT=3306
+    restart: always
+    network_mode: bridge
+    ports:
+      - '127.0.0.1:3306:3306'
+    mem_limit: 512m
+    mem_reservation: 256m
+    cpu_percent: 50
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+
